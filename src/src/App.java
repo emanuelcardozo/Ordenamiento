@@ -14,15 +14,14 @@ public class App extends JApplet {
 
 
 	public App() {
-		setLayout(new GridLayout(0, 1, 0, 0));
-		SortPanelsHolder sortPanelHolder = new SortPanelsHolder();
-		sortPanelHolder.setLayout(new  GridLayout(10, 10, 0, 0));
-		sortPanelHolder.setBackground(Color.BLACK);
-		sortPanelHolder.setForeground(Color.BLACK);
 		int width = 500;
 		int height = 200;
+		SortPanelsHolder sortPanelHolder = new SortPanelsHolder();
+		sortPanelHolder.setPreferredSize(new Dimension(width, height));
+		sortPanelHolder.setBackground(Color.BLACK);
+		sortPanelHolder.setForeground(Color.BLACK);
 		sp = new BubbleSortPanel(" Ordenamiento Burbuja ", sleepTime, width, height);
-		sp.setVisible(false);
+		sp.setVisible(true);
 		sortPanelHolder.add(sp);
 		add(sortPanelHolder);
 	}
@@ -55,7 +54,7 @@ public class App extends JApplet {
 		}
 	}
 
-	public static void main(String[] args) {
+	public void seleccionarTipoArray(String tipoArray) {
 		JFrame frame = new JFrame("Algoritmos de ordenamiento");
 		App main = new App();
 		frame.add(main);
@@ -64,46 +63,50 @@ public class App extends JApplet {
 		frame.pack();
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
-		
-		
 		int[] list = new int[size];
-		
-		for (int i = 0; i < list.length; i++) {
-			list[i] = i + 1;
+		switch (tipoArray) {
+		case "Aleatorio":
+			for (int i = 0; i < list.length; i++) {
+				list[i] = i + 1;
+			}
+			for (int i = 0; i < list.length; i++) {
+				int index = (int) (Math.random() * list.length);
+				int temp = list[i];
+				list[i] = list[index];
+				list[index] = temp;
+			}
+			main.beginAnimation(list);
+			break;
+		case "Invertido":
+			for (int i = 0; i < list.length; i++) {
+				list[i] = size - i;
+			}
+			list[list.length - 1] = list.length / 2 + 1;
+			main.beginAnimation(list);
+			break;
+		case "Casi invertido":
+			break;
+		case "Ordenado":
+			for (int i = 0; i < list.length; i++) {
+				list[i] = i + 1;
+			}
+			main.beginAnimation(list);
+			break;
+		case "Casi ordenado":
+			for (int i = 0; i < list.length / 2; i++) {
+				list[i] = i + 1;
+			}
+			for (int i = list.length / 2; i < list.length; i++) {
+				list[i] = i + 2;
+			}
+			list[list.length - 1] = list.length / 2 + 1;
+			main.beginAnimation(list);
+			break;
 		}
-		for (int i = 0; i < list.length; i++) {
-			int index = (int) (Math.random() * list.length);
-			int temp = list[i];
-			list[i] = list[index];
-			list[index] = temp;
-		}
-		main.beginAnimation(list);
-		
-		for (int i = 0; i < list.length; i++) {
-			list[i] = (1 + i / (size / 4) ) * (size / 4);
-		}
-		for (int i = 0; i < list.length; i++) {
-			int index = (int) (Math.random() * list.length);
-			int temp = list[i];
-			list[i] = list[index];
-			list[index] = temp;
-		}
-		main.beginAnimation(list);
-
-		
-		for (int i = 0; i < list.length; i++) {
-			list[i] = size - i;
-		}
-		main.beginAnimation(list);
-		
-		
-		for (int i = 0; i < list.length / 2; i++) {
-			list[i] = i + 1;
-		}
-		for (int i = list.length / 2; i < list.length; i++) {
-			list[i] = i + 2;
-		}
-		list[list.length - 1] = list.length / 2 + 1;
-		main.beginAnimation(list);
+	}
+	
+	public static void main(String[] args) {
+		App ap = new App();
+		ap.seleccionarTipoArray("Ordenado");
 	}
 }
