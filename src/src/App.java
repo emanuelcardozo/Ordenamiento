@@ -1,4 +1,4 @@
-package net.bohush.sorting;
+package src;
 
 import javax.swing.*;
 
@@ -6,15 +6,14 @@ import java.awt.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 //Visualization and Comparison of Sorting Algorithms
-public class Main extends JApplet {
-
+public class App extends JApplet {
 	private static final long serialVersionUID = 1L;
 	private SortPanel sp;
 	private static int size = 100;
 	private int sleepTime = 2;
 
 
-	public Main() {
+	public App() {
 		setLayout(new GridLayout(0, 1, 0, 0));
 		SortPanelsHolder sortPanelHolder = new SortPanelsHolder();
 		sortPanelHolder.setLayout(new  GridLayout(10, 10, 0, 0));
@@ -58,7 +57,7 @@ public class Main extends JApplet {
 
 	public static void main(String[] args) {
 		JFrame frame = new JFrame("Algoritmos de ordenamiento");
-		Main main = new Main();
+		App main = new App();
 		frame.add(main);
 		frame.setUndecorated(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

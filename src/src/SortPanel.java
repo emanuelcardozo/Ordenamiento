@@ -1,4 +1,4 @@
-package net.bohush.sorting;
+package src;
 
 import java.awt.Color;
 import java.awt.Dimension;
