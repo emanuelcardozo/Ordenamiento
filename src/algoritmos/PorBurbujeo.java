@@ -8,7 +8,8 @@ import src.PanelOrdenador;
 
 public class PorBurbujeo<T extends Comparable<T>> extends PanelOrdenador implements Estrategia<T> {
 	private static final long serialVersionUID = 1L;
-	private int columnaRoja = -1;
+	private int columnaRoja1 = -1;
+	private int columnaRoja2 = -1;
 	private int columnaVerde = -1;
 	private int cantComparaciones = 0;
 	private int cantIntercambios = 0;
@@ -20,6 +21,7 @@ public class PorBurbujeo<T extends Comparable<T>> extends PanelOrdenador impleme
 
 	@Override
 	public int[] ordenar(int[] arregloInmutable) {
+		long timeStart = System.currentTimeMillis();
 		int[] arreglo = Arrays.copyOf(arregloInmutable, arregloInmutable.length);
 		list = arreglo;
 		int cantidadVerdes = 0;
@@ -29,17 +31,21 @@ public class PorBurbujeo<T extends Comparable<T>> extends PanelOrdenador impleme
 			do {
 				huboCambio = false;
 				for (int i = 0; i < arreglo.length - 1; i++) {
-					columnaRoja = i;
+					columnaRoja1 = i;
+					columnaRoja2 = i+1;
+					tiempo = (int) (System.currentTimeMillis() - timeStart);
 					repaint();
-					Thread.sleep(4 * sleepTime);
+					Thread.sleep(sleepTime);
+					
 					if ((arreglo[i] - (arreglo[i + 1])) > 0) {
 						intercambiar(arreglo, i, i + 1);
 						repaint();
-						Thread.sleep(4 * sleepTime);
+						Thread.sleep(sleepTime);
 						huboCambio = true;
 					}
 					cantComparaciones++;
-					columnaRoja = -1;
+					columnaRoja1 = -1;
+					columnaRoja2 = -1;
 				}
 				cantidadVerdes++;
 				columnaVerde = list.length - cantidadVerdes;
@@ -55,7 +61,8 @@ public class PorBurbujeo<T extends Comparable<T>> extends PanelOrdenador impleme
 
 	@Override
 	public void intercambiar(int[] arreglo, int i, int j) {
-		columnaRoja = j;
+		columnaRoja1 = j;
+		columnaRoja2 = i;
 		int temporal = arreglo[i];
 		arreglo[i] = arreglo[j];
 		arreglo[j] = temporal;
@@ -69,7 +76,8 @@ public class PorBurbujeo<T extends Comparable<T>> extends PanelOrdenador impleme
 
 	@Override
 	public void reset() {
-		columnaRoja = -1;
+		columnaRoja1 = -1;
+		columnaRoja2 = -1;
 		columnaVerde = -1;
 	}
 
@@ -78,6 +86,7 @@ public class PorBurbujeo<T extends Comparable<T>> extends PanelOrdenador impleme
 		super.paintComponent(g);
 		int columnWidth = (getWidth() - 4 * BORDER_WIDTH) / size;
 		int columnHeight = (getHeight() - 4 * BORDER_WIDTH) / size;
+		
 		for (int i = 0; i < (columnaVerde == -1 ? list.length : columnaVerde); i++) {
 			g.setColor(Color.WHITE);
 			g.fillRect(2 * BORDER_WIDTH + columnWidth * i, getHeight() - list[i] * columnHeight - 2 * BORDER_WIDTH,
@@ -95,20 +104,32 @@ public class PorBurbujeo<T extends Comparable<T>> extends PanelOrdenador impleme
 				g.drawRect(2 * BORDER_WIDTH + columnWidth * i, getHeight() - list[i] * columnHeight - 2 * BORDER_WIDTH,
 						columnWidth, list[i] * columnHeight);
 		}
-		if (columnaRoja != -1) {
+		if (columnaRoja1 != -1) {
 			g.setColor(Color.RED);
-			g.fillRect(2 * BORDER_WIDTH + columnWidth * columnaRoja,
-					getHeight() - list[columnaRoja] * columnHeight - 2 * BORDER_WIDTH, columnWidth,
-					list[columnaRoja] * columnHeight);
+			g.fillRect(2 * BORDER_WIDTH + columnWidth * columnaRoja1,
+					getHeight() - list[columnaRoja1] * columnHeight - 2 * BORDER_WIDTH, columnWidth,
+					list[columnaRoja1] * columnHeight);
 			g.setColor(Color.BLACK);
-			g.drawRect(2 * BORDER_WIDTH + columnWidth * columnaRoja,
-					getHeight() - list[columnaRoja] * columnHeight - 2 * BORDER_WIDTH, columnWidth,
-					list[columnaRoja] * columnHeight);
+			g.drawRect(2 * BORDER_WIDTH + columnWidth * columnaRoja1,
+					getHeight() - list[columnaRoja1] * columnHeight - 2 * BORDER_WIDTH, columnWidth,
+					list[columnaRoja1] * columnHeight);
 		}
+		
+		if (columnaRoja2 != -1) {
+			g.setColor(Color.RED);
+			g.fillRect(2 * BORDER_WIDTH + columnWidth * columnaRoja2,
+					getHeight() - list[columnaRoja2] * columnHeight - 2 * BORDER_WIDTH, columnWidth,
+					list[columnaRoja2] * columnHeight);
+			g.setColor(Color.BLACK);
+			g.drawRect(2 * BORDER_WIDTH + columnWidth * columnaRoja2,
+					getHeight() - list[columnaRoja2] * columnHeight - 2 * BORDER_WIDTH, columnWidth,
+					list[columnaRoja2] * columnHeight);
+		}
+		
 		g.setColor(Color.RED);
-		g.drawString("Comparaciones:" + cantComparaciones, 10, 30);
-		g.drawString("Intercambios:" + cantIntercambios, 250, 30);
-		g.drawString("Tiempo:" + tiempo , 450, 30);
+		g.drawString("Comparaciones:" + cantComparaciones, 30, 30);
+		g.drawString("Intercambios:" + cantIntercambios, 30, 60);
+		g.drawString("Tiempo:" + tiempo + " ms" , 30, 90);
 		}
 		
 	}

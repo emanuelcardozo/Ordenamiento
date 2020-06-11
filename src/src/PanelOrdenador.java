@@ -51,7 +51,7 @@ public abstract class PanelOrdenador extends JPanel implements Runnable {
 		g.setColor(Color.WHITE);
 		g.setFont(nameFont);
 		g.drawString(name, (getWidth() - nameFontMetrix.stringWidth(name)) / 2,
-				BORDER_WIDTH + nameFontMetrix.getAscent() / 3);
+				BORDER_WIDTH + nameFontMetrix.getAscent() / 2);
 
 	}
 

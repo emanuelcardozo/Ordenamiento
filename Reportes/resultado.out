@@ -1,4 +1,4 @@
-Tipo Ordenamiento: Quicksort
-Tipo de array: Casi ordenado
-Cantidad de elementos: 50
-Tiempo de ejecucion: 10 segundos
+Tipo Ordenamiento: Burbuja
+Tipo de array: Aleatorio
+Cantidad de elementos: 200
+Tiempo de ejecucion: 239 segundos

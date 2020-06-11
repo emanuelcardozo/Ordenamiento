@@ -8,6 +8,6 @@ public class App {
   */
 	public static void main(String[] args) {
 		Ventana v = new Ventana();
-		v.ejecutarAlgoritmo("Quicksort", "Casi ordenado", 50, 2);
+		v.ejecutarAlgoritmo("Burbuja", "Aleatorio", 200, 40);
 	}
 }

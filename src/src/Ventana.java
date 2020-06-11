@@ -17,8 +17,8 @@ public class Ventana extends JApplet {
 	private static final long serialVersionUID = 1L;
 	private PanelOrdenador sp;
 	private int sleepTime;
-	private int width = 1200;
-	private int height = 500;
+	private int width = 900;
+	private int height = 600;
 
 	public Ventana(String tipoOrdenamiento, int tiempoDemora) {
 		PanelOrdenadorContendor sortPanelHolder = new PanelOrdenadorContendor();
@@ -64,10 +64,11 @@ public class Ventana extends JApplet {
 		JFrame frame = new JFrame("Algoritmos de ordenamiento");
 		Ventana main = new Ventana(tipoOrdenamiento, tiempoDemora);
 		frame.add(main);
-		frame.setUndecorated(true);
+//		frame.setUndecorated(true);
 		frame.pack();
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
+		
 		int[] list = new int[size];
 		switch (tipoArray) {
 		case "Aleatorio":
