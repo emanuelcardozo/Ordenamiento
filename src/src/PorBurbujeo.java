@@ -5,7 +5,7 @@ import java.awt.Graphics;
 import java.util.Arrays;
 
 public class PorBurbujeo<T extends Comparable<T>> extends SortPanel implements Estrategia<T> {
-	private static final long serialVersionUID = 100L;
+	private static final long serialVersionUID = 1L;
 	private int columnaRoja = -1;
 	private int columnaVerde = -1;
 	private int cantComparaciones = 0;
@@ -64,8 +64,6 @@ public class PorBurbujeo<T extends Comparable<T>> extends SortPanel implements E
 	@Override
 	public void run() {
 		ordenar(list);
-		System.out.println(cantComparaciones);
-		System.out.println(cantIntercambios);
 	}
 
 	@Override

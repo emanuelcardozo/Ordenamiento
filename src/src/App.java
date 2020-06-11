@@ -32,16 +32,7 @@ public class App extends JApplet {
 		add(sortPanelHolder);	
 	}
 
-	class SortPanelsHolder extends JPanel {
-		private static final long serialVersionUID = 1L;
-		@Override
-		protected void paintComponent(Graphics g) {
-			super.paintComponent(g);
-			g.setColor(Color.WHITE);
-		}
-	}
-	
-	public void beginAnimation(int[] list) {
+	public void pintadoAnimacion(int[] list) {
 		try {
 			repaint();
 				sp.setList(list);
@@ -81,13 +72,13 @@ public class App extends JApplet {
 				list[i] = list[index];
 				list[index] = temp;
 			}
-			main.beginAnimation(list);
+			main.pintadoAnimacion(list);
 			break;
 		case "Invertido":
 			for (int i = 0; i < list.length; i++) {
 				list[i] = size - i;
 			}
-			main.beginAnimation(list);
+			main.pintadoAnimacion(list);
 			break;
 		case "Casi invertido":
 			break;
@@ -95,7 +86,7 @@ public class App extends JApplet {
 			for (int i = 0; i < list.length; i++) {
 				list[i] = i + 1;
 			}
-			main.beginAnimation(list);
+			main.pintadoAnimacion(list);
 			break;
 		case "Casi ordenado":
 			for (int i = 0; i < list.length / 2; i++) {
@@ -105,7 +96,7 @@ public class App extends JApplet {
 				list[i] = i + 2;
 			}
 			list[list.length - 1] = list.length / 2 + 1;
-			main.beginAnimation(list);
+			main.pintadoAnimacion(list);
 			break;
 		}
 	}

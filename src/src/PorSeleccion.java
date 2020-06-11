@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.util.Arrays;
 
 public class PorSeleccion<T extends Comparable<T>> extends SortPanel implements Estrategia<T> {
+	private static final long serialVersionUID = 1L;
 	private int columnaRoja = -1;
 	private int columnaVerde = -1;
 	private int columnaAzul = -1;
