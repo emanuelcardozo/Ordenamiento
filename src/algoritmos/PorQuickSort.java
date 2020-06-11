@@ -54,7 +54,7 @@ public class PorQuickSort<T extends Comparable<T>> extends SortPanel implements 
 		}
 		return 0;
 	}
-	
+
 	private void ordenarQ(int arreglo[], int inferior, int superior) {
 		if (inferior < superior) {
 			int pivot = partition(arreglo, inferior, superior);
@@ -62,10 +62,9 @@ public class PorQuickSort<T extends Comparable<T>> extends SortPanel implements 
 			repaint();
 			ordenarQ(arreglo, inferior, pivot - 1);
 			ordenarQ(arreglo, pivot + 1, superior);
-			
+
 		}
 	}
-
 
 	@Override
 	public void intercambiar(int[] arreglo, int i, int j) {
@@ -76,7 +75,7 @@ public class PorQuickSort<T extends Comparable<T>> extends SortPanel implements 
 
 	@Override
 	public void run() {
-		ordenar(list);	
+		ordenar(list);
 	}
 
 	@Override
@@ -86,8 +85,7 @@ public class PorQuickSort<T extends Comparable<T>> extends SortPanel implements 
 		columnaAzul = -1;
 		columnaCyan = -1;
 	}
-	
-	
+
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);

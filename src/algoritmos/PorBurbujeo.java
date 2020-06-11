@@ -13,8 +13,7 @@ public class PorBurbujeo<T extends Comparable<T>> extends SortPanel implements E
 	private int cantComparaciones = 0;
 	private int cantIntercambios = 0;
 	private long tiempo;
-	
-	
+
 	public PorBurbujeo(int sleepTime, int width, int height) {
 		super("Burbujeo", sleepTime, width, height);
 	}
@@ -44,7 +43,7 @@ public class PorBurbujeo<T extends Comparable<T>> extends SortPanel implements E
 				}
 				cantidadVerdes++;
 				columnaVerde = list.length - cantidadVerdes;
-				
+
 				repaint();
 			} while (huboCambio);
 		} catch (InterruptedException e) {
@@ -73,39 +72,44 @@ public class PorBurbujeo<T extends Comparable<T>> extends SortPanel implements E
 		columnaRoja = -1;
 		columnaVerde = -1;
 	}
-	
+
 	@Override
-	protected void paintComponent(Graphics g) {		
+	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		int columnWidth = (getWidth() - 4 * BORDER_WIDTH) / size;
 		int columnHeight = (getHeight() - 4 * BORDER_WIDTH) / size;
 		for (int i = 0; i < (columnaVerde == -1 ? list.length : columnaVerde); i++) {
 			g.setColor(Color.WHITE);
-			g.fillRect(2 * BORDER_WIDTH + columnWidth * i, getHeight() - list[i] * columnHeight - 2 * BORDER_WIDTH, columnWidth, list[i] * columnHeight);
+			g.fillRect(2 * BORDER_WIDTH + columnWidth * i, getHeight() - list[i] * columnHeight - 2 * BORDER_WIDTH,
+					columnWidth, list[i] * columnHeight);
 			g.setColor(Color.BLACK);
-			g.drawRect(2 * BORDER_WIDTH + columnWidth * i, getHeight() - list[i] * columnHeight - 2 * BORDER_WIDTH, columnWidth, list[i] * columnHeight);			
+			g.drawRect(2 * BORDER_WIDTH + columnWidth * i, getHeight() - list[i] * columnHeight - 2 * BORDER_WIDTH,
+					columnWidth, list[i] * columnHeight);
 		}
-		if(columnaVerde != -1) {
+		if (columnaVerde != -1) {
 			for (int i = columnaVerde; i < list.length; i++) {
 				g.setColor(Color.GREEN);
-				g.fillRect(2 * BORDER_WIDTH + columnWidth * i, getHeight() - list[i] * columnHeight - 2 * BORDER_WIDTH, columnWidth, list[i] * columnHeight);
+				g.fillRect(2 * BORDER_WIDTH + columnWidth * i, getHeight() - list[i] * columnHeight - 2 * BORDER_WIDTH,
+						columnWidth, list[i] * columnHeight);
 				g.setColor(Color.BLACK);
-				g.drawRect(2 * BORDER_WIDTH + columnWidth * i, getHeight() - list[i] * columnHeight - 2 * BORDER_WIDTH, columnWidth, list[i] * columnHeight);			
+				g.drawRect(2 * BORDER_WIDTH + columnWidth * i, getHeight() - list[i] * columnHeight - 2 * BORDER_WIDTH,
+						columnWidth, list[i] * columnHeight);
 			}
 		}
-		if(columnaRoja != -1) {
+		if (columnaRoja != -1) {
 			g.setColor(Color.RED);
-			g.fillRect(2 * BORDER_WIDTH + columnWidth * columnaRoja, getHeight() - list[columnaRoja] * columnHeight - 2 * BORDER_WIDTH, columnWidth, list[columnaRoja] * columnHeight);
+			g.fillRect(2 * BORDER_WIDTH + columnWidth * columnaRoja,
+					getHeight() - list[columnaRoja] * columnHeight - 2 * BORDER_WIDTH, columnWidth,
+					list[columnaRoja] * columnHeight);
 			g.setColor(Color.BLACK);
-			g.drawRect(2 * BORDER_WIDTH + columnWidth * columnaRoja, getHeight() - list[columnaRoja] * columnHeight - 2 * BORDER_WIDTH, columnWidth, list[columnaRoja] * columnHeight);
+			g.drawRect(2 * BORDER_WIDTH + columnWidth * columnaRoja,
+					getHeight() - list[columnaRoja] * columnHeight - 2 * BORDER_WIDTH, columnWidth,
+					list[columnaRoja] * columnHeight);
 		}
 		g.setColor(Color.RED);
 		g.drawString("Comparaciones:" + cantComparaciones, 10, 30);
 		g.drawString("Intercambios:" + cantIntercambios, 210, 30);
 		g.drawString("Tiempo:" + tiempo, 390, 30);
 	}
-
-
-	
 
 }
