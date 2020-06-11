@@ -16,7 +16,7 @@ import java.util.concurrent.Executors;
 public class Ventana extends JApplet {
 	private static final long serialVersionUID = 1L;
 	private PanelOrdenador sp;
-	private int sleepTime = 20;
+	private int sleepTime;
 	private int width = 1200;
 	private int height = 500;
 
@@ -109,13 +109,13 @@ public class Ventana extends JApplet {
 		}
 	}
 
-	public void escribirResultado(String tipoOrdenamiento, String tipoArray, int cantElementos) {
+	public void escribirResultado(String tipoOrdenamiento, String tipoArray, int cantElementos, int tiempoGral) {
 		try {
 			PrintWriter pw = new PrintWriter(new File("Reportes/resultado.out"));
 			pw.println("Tipo Ordenamiento: " + tipoOrdenamiento);
 			pw.println("Tipo de array: " + tipoArray);
 			pw.println("Cantidad de elementos: " + cantElementos);
-			pw.println("Tiempo de ejecucion: " + 0);
+			pw.println("Tiempo de ejecucion: " + tiempoGral+" segundos");
 			pw.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -124,8 +124,12 @@ public class Ventana extends JApplet {
 
 	public void ejecutarAlgoritmo(String tipoOrdenamiento, String tipoArray, int cantElementos, int tiempoDemora) {
 		Ventana ap = new Ventana(tipoOrdenamiento, tiempoDemora);
+		int tiempoFinal, tiempoGral;
+		int tiempoInicio = (int) System.currentTimeMillis();
 		ap.seleccionarTipoArray(tipoArray, tipoOrdenamiento, cantElementos, tiempoDemora);
-		ap.escribirResultado(tipoOrdenamiento, tipoArray, cantElementos);
+		tiempoFinal = (int) System.currentTimeMillis();
+		tiempoGral = (tiempoFinal-tiempoInicio) /1000;
+		ap.escribirResultado(tipoOrdenamiento, tipoArray, cantElementos, tiempoGral);
 		System.out.println("Reporte realizado correctamente!");
 		System.exit(0);
 	}
