@@ -105,7 +105,9 @@ public class PorSeleccion<T extends Comparable<T>> extends SortPanel implements 
 			g.setColor(Color.BLACK);
 			g.drawRect(2 * BORDER_WIDTH + columnWidth * columnaAzul, getHeight() - list[columnaAzul] * columnHeight - 2 * BORDER_WIDTH, columnWidth, list[columnaAzul] * columnHeight);
 		}
-
+		g.setColor(Color.RED);
+		g.drawString("Comparaciones:" + cantComparaciones, 10, 30);
+		g.drawString("Intercambios:" + cantIntercambios, 210, 30);
 	}
 
 }

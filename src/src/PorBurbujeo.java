@@ -72,7 +72,7 @@ public class PorBurbujeo<T extends Comparable<T>> extends SortPanel implements E
 	}
 	
 	@Override
-	protected void paintComponent(Graphics g) {
+	protected void paintComponent(Graphics g) {		
 		super.paintComponent(g);
 		int columnWidth = (getWidth() - 4 * BORDER_WIDTH) / size;
 		int columnHeight = (getHeight() - 4 * BORDER_WIDTH) / size;
@@ -96,6 +96,9 @@ public class PorBurbujeo<T extends Comparable<T>> extends SortPanel implements E
 			g.setColor(Color.BLACK);
 			g.drawRect(2 * BORDER_WIDTH + columnWidth * columnaRoja, getHeight() - list[columnaRoja] * columnHeight - 2 * BORDER_WIDTH, columnWidth, list[columnaRoja] * columnHeight);
 		}
+		g.setColor(Color.RED);
+		g.drawString("Comparaciones: " + cantComparaciones, 10, 30);
+		g.drawString("Intercambios: " + cantIntercambios, 210, 30);
 	}
 
 

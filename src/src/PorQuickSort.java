@@ -9,6 +9,8 @@ public class PorQuickSort<T extends Comparable<T>> extends SortPanel implements 
 	private int columnaVerde = -1;
 	private int columnaAzul = -1;
 	private int columnaCyan = -1;
+	private int cantComparaciones = 0;
+	private int cantIntercambios = 0;
 
 	public PorQuickSort(String nombre, int sleepTime, int width, int height) {
 		super(nombre, sleepTime, width, height);
@@ -134,6 +136,8 @@ public class PorQuickSort<T extends Comparable<T>> extends SortPanel implements 
 					getHeight() - list[columnaCyan] * columnHeight - 2 * BORDER_WIDTH, columnWidth,
 					list[columnaAzul] * columnHeight);
 		}
-
+		g.setColor(Color.RED);
+		g.drawString("Comparaciones: " + cantComparaciones, 10, 30);
+		g.drawString("Intercambios: " + cantIntercambios, 210, 30);
 	}
 }

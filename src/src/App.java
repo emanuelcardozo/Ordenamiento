@@ -22,7 +22,7 @@ public class App extends JApplet {
 		sortPanelHolder.setPreferredSize(new Dimension(width, height));
 		sortPanelHolder.setBackground(Color.BLACK);
 		sortPanelHolder.setForeground(Color.BLACK);
-		sp = new PorQuickSort("QuickcSort", sleepTime, width, height);
+		sp = new PorSeleccion("Burbujeo", sleepTime, width, height);
 		sp.setVisible(true);
 		sortPanelHolder.add(sp);
 		add(sortPanelHolder);	
