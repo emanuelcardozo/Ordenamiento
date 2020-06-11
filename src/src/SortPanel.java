@@ -9,7 +9,6 @@ import java.awt.Graphics;
 import javax.swing.JPanel;
 
 public abstract class SortPanel extends JPanel implements Runnable {
-	private static final long serialVersionUID = 1L;
 	protected static final int BORDER_WIDTH = 5;
 	private Dimension prefferedDimension;
 	protected int size;

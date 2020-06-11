@@ -9,8 +9,8 @@ import java.util.concurrent.Executors;
 public class App extends JApplet {
 	private static final long serialVersionUID = 1L;
 	private SortPanel sp;
-	private static int size = 100;
-	private int sleepTime = 2;
+	private static int size = 50;
+	private int sleepTime = 10;
 
 
 	public App() {
@@ -20,7 +20,8 @@ public class App extends JApplet {
 		sortPanelHolder.setPreferredSize(new Dimension(width, height));
 		sortPanelHolder.setBackground(Color.BLACK);
 		sortPanelHolder.setForeground(Color.BLACK);
-		sp = new BubbleSortPanel(" Ordenamiento Burbuja ", sleepTime, width, height);
+		//sp = new PorBurbujeo(" Ordenamiento Burbuja ", sleepTime, width, height);
+		sp = new PorSeleccion(" Ordenamiento Burbuja ", sleepTime, width, height);
 		sp.setVisible(true);
 		sortPanelHolder.add(sp);
 		add(sortPanelHolder);
@@ -48,7 +49,7 @@ public class App extends JApplet {
 				Thread.sleep(100);
 			}
 			Thread.sleep(1000);
-			sp.setVisible(false);
+			//sp.setVisible(false);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
@@ -81,7 +82,6 @@ public class App extends JApplet {
 			for (int i = 0; i < list.length; i++) {
 				list[i] = size - i;
 			}
-			list[list.length - 1] = list.length / 2 + 1;
 			main.beginAnimation(list);
 			break;
 		case "Casi invertido":
@@ -107,6 +107,6 @@ public class App extends JApplet {
 	
 	public static void main(String[] args) {
 		App ap = new App();
-		ap.seleccionarTipoArray("Ordenado");
+		ap.seleccionarTipoArray("Aleatorio");
 	}
 }
