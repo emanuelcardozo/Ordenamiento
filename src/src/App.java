@@ -11,7 +11,9 @@ public class App extends JApplet {
 	private SortPanel sp;
 	private static int size = 50;
 	private int sleepTime = 10;
-
+	private int width = 500;
+    private	int height = 200;
+ 
 
 	public App() {
 		int width = 500;
@@ -20,13 +22,12 @@ public class App extends JApplet {
 		sortPanelHolder.setPreferredSize(new Dimension(width, height));
 		sortPanelHolder.setBackground(Color.BLACK);
 		sortPanelHolder.setForeground(Color.BLACK);
-		//sp = new PorBurbujeo(" Ordenamiento Burbuja ", sleepTime, width, height);
-		sp = new PorSeleccion(" Ordenamiento Burbuja ", sleepTime, width, height);
+		sp = new PorQuickSort("QuickcSort", sleepTime, width, height);
 		sp.setVisible(true);
 		sortPanelHolder.add(sp);
-		add(sortPanelHolder);
+		add(sortPanelHolder);	
 	}
-	
+
 	class SortPanelsHolder extends JPanel {
 		private static final long serialVersionUID = 1L;
 		@Override
@@ -49,12 +50,11 @@ public class App extends JApplet {
 				Thread.sleep(100);
 			}
 			Thread.sleep(1000);
-			//sp.setVisible(false);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
 	}
-
+	
 	public void seleccionarTipoArray(String tipoArray) {
 		JFrame frame = new JFrame("Algoritmos de ordenamiento");
 		App main = new App();

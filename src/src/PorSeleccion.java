@@ -8,6 +8,8 @@ public class PorSeleccion<T extends Comparable<T>> extends SortPanel implements 
 	private int columnaRoja = -1;
 	private int columnaVerde = -1;
 	private int columnaAzul = -1;
+	private int cantComparaciones = 0;
+	private int cantIntercambios = 0;
 
 	public PorSeleccion(String nombre, int sleepTime, int width, int height) {
 		super(nombre, sleepTime, width, height);
@@ -34,6 +36,7 @@ public class PorSeleccion<T extends Comparable<T>> extends SortPanel implements 
 						columnaRoja = posicionDelMenor;
 						repaint();
 					}
+					cantComparaciones++;
 				}
 				if (posicionDelMenor != i) {
 					intercambiar(arreglo, i, posicionDelMenor);
@@ -57,6 +60,7 @@ public class PorSeleccion<T extends Comparable<T>> extends SortPanel implements 
 		int temporal = arreglo[i];
 		arreglo[i] = arreglo[j];
 		arreglo[j] = temporal;
+		cantIntercambios++;
 	}
 
 	@Override
