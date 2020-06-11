@@ -30,9 +30,9 @@ public class Ventana extends JApplet {
 		sortPanelHolder.setBackground(Color.BLACK);
 		sortPanelHolder.setForeground(Color.BLACK);
 		this.sleepTime = tiempoDemora;
-		if (tipoOrdenamiento.equals("Burbujeo"))
+		if (tipoOrdenamiento.equals("Burbujeo") || tipoOrdenamiento.equals("Burbuja") || tipoOrdenamiento.equals("Por burbujeo"))
 			sp = new PorBurbujeo(sleepTime, width, height);
-		else if (tipoOrdenamiento.equals("Seleccion"))
+		else if (tipoOrdenamiento.equals("Seleccion") || tipoOrdenamiento.equals("Por seleccion"))
 			sp = new PorSeleccion(sleepTime, width, height);
 		else if (tipoOrdenamiento.equals("Quicksort"))
 			sp = new PorQuickSort(sleepTime, width, height);
@@ -127,10 +127,5 @@ public class Ventana extends JApplet {
 	public void ejecutarAlgoritmo(String tipoOrdenamiento, String tipoArray, int cantElementos, int tiempoDemora) {
 		Ventana ap = new Ventana(tipoOrdenamiento, tiempoDemora);
 		ap.seleccionarTipoArray(tipoArray, tipoOrdenamiento, cantElementos, tiempoDemora);
-	}
-
-	public static void main(String[] args) {
-		Ventana ap = new Ventana();
-		ap.ejecutarAlgoritmo("Burbujeo", "Aleatorio", 10, 1);
 	}
 }
