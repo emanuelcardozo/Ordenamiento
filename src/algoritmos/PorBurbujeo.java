@@ -12,7 +12,7 @@ public class PorBurbujeo<T extends Comparable<T>> extends PanelOrdenador impleme
 	private int columnaVerde = -1;
 	private int cantComparaciones = 0;
 	private int cantIntercambios = 0;
-	private long tiempo;
+	private int tiempo = 0;
 
 	public PorBurbujeo(int sleepTime, int width, int height) {
 		super("Burbujeo", sleepTime, width, height);
@@ -108,7 +108,7 @@ public class PorBurbujeo<T extends Comparable<T>> extends PanelOrdenador impleme
 		g.setColor(Color.RED);
 		g.drawString("Comparaciones:" + cantComparaciones, 10, 30);
 		g.drawString("Intercambios:" + cantIntercambios, 250, 30);
-		g.drawString("Tiempo:" + tiempo, 450, 30);
+		g.drawString("Tiempo:" + tiempo , 450, 30);
 		}
 		
 	}

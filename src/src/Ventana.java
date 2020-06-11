@@ -95,7 +95,6 @@ public class Ventana extends JApplet {
 			for (int i = list.length/2; i < list.length; i++) {
 				list[i] = size;
 			}
-			
 			main.pintadoAnimacion(list);
 			break;
 		case "Ordenado":

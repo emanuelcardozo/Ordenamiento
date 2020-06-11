@@ -1,9 +1,13 @@
-package src;
+package src; 
 
 public class App {
-
+ /***
+  * ejecutarAlgoritmo( String tipoDeOrdenamiento, String tipoDeArray, int cantidadElementos, int tiempoRetardo) 
+  * tipoOrdenamiento: Burbuja - Seleccion - Quicksort
+  * tipoDeArray: Aleatorio - Invertido - Casi invertido - Ordenado - Casi ordenado
+  */
 	public static void main(String[] args) {
-		Ventana vent = new Ventana();
-		vent.ejecutarAlgoritmo("Burbujeo", "Casi invertido", 50, 1);
+		Ventana v = new Ventana();
+		v.ejecutarAlgoritmo("Quicksort", "Casi ordenado", 50, 2);
 	}
 }
