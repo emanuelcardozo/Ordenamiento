@@ -114,10 +114,10 @@ public class Ventana extends JApplet {
 		}
 	}
 
-	public void escribirResultado() {
+	public void escribirResultado(String tipoOrdenamiento, String tipoArray, int cantElementos) {
 		try {
 			PrintWriter pw = new PrintWriter(new File("resultado.out"));
-			pw.print(sp.getName() + " " + this.tipoArray + " " + this.size + " " + 0);
+			pw.print(tipoOrdenamiento + " " + tipoArray + " " + cantElementos + " " + 0);
 			pw.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -127,5 +127,8 @@ public class Ventana extends JApplet {
 	public void ejecutarAlgoritmo(String tipoOrdenamiento, String tipoArray, int cantElementos, int tiempoDemora) {
 		Ventana ap = new Ventana(tipoOrdenamiento, tiempoDemora);
 		ap.seleccionarTipoArray(tipoArray, tipoOrdenamiento, cantElementos, tiempoDemora);
+		ap.escribirResultado(tipoOrdenamiento, tipoArray, cantElementos);
+		System.out.println("Reporte realizado correctamente!");
+		System.exit(0);
 	}
 }
