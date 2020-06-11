@@ -14,7 +14,7 @@ public class PorQuickSort<T extends Comparable<T>> extends PanelOrdenador implem
 	private int columnaCyan = -1;
 	private int cantComparaciones = 0;
 	private int cantIntercambios = 0;
-	private int tiempo = 0;
+	private long timeStart = 0;
 
 	public PorQuickSort(int sleepTime, int width, int height) {
 		super("QuickSort", sleepTime, width, height);
@@ -23,6 +23,7 @@ public class PorQuickSort<T extends Comparable<T>> extends PanelOrdenador implem
 	public int[] ordenar(final int[] arregloInmutable) {
 		int[] arreglo = Arrays.copyOf(arregloInmutable, arregloInmutable.length);
 		arreglo = list;
+		timeStart = System.currentTimeMillis();
 		ordenarQ(arreglo, 0, arreglo.length - 1);
 
 		return arreglo;
@@ -36,12 +37,13 @@ public class PorQuickSort<T extends Comparable<T>> extends PanelOrdenador implem
 			columnaRoja = inferior + (superior - inferior) / 2;
 			int i = (inferior - 1);
 			for (int j = inferior; j < superior; j++) {
-				Thread.sleep(4 * sleepTime);
+				cantComparaciones++;
+				Thread.sleep(sleepTime);
 				repaint();
 				if ((arreglo[j] - (pivot)) < 0) {
 					i++;
 					columnaAzul = i;
-					Thread.sleep(4 * sleepTime);
+					Thread.sleep(sleepTime);
 					repaint();
 					intercambiar(arreglo, i, j);
 				}
@@ -57,9 +59,11 @@ public class PorQuickSort<T extends Comparable<T>> extends PanelOrdenador implem
 	}
 
 	private void ordenarQ(int arreglo[], int inferior, int superior) {
+		cantComparaciones++;
 		if (inferior < superior) {
 			int pivot = partition(arreglo, inferior, superior);
 			columnaAzul = inferior;
+			
 			repaint();
 			ordenarQ(arreglo, inferior, pivot - 1);
 			ordenarQ(arreglo, pivot + 1, superior);
@@ -72,6 +76,7 @@ public class PorQuickSort<T extends Comparable<T>> extends PanelOrdenador implem
 		int temporal = arreglo[i];
 		arreglo[i] = arreglo[j];
 		arreglo[j] = temporal;
+		cantIntercambios++;
 	}
 
 	@Override
@@ -139,8 +144,9 @@ public class PorQuickSort<T extends Comparable<T>> extends PanelOrdenador implem
 					list[columnaAzul] * columnHeight);
 		}
 		g.setColor(Color.RED);
-		g.drawString("Comparaciones: " + cantComparaciones, 10, 30);
-		g.drawString("Intercambios: " + cantIntercambios, 250, 30);
-		g.drawString("Tiempo:" + tiempo, 450, 30);
+		g.drawString("Comparaciones:" + cantComparaciones, 30, 30);
+		g.drawString("Intercambios:" + cantIntercambios, 30, 60);
+		long time = timeStart == 0 ? timeStart : System.currentTimeMillis() - timeStart;
+		g.drawString("Tiempo:" + time + " ms" , 30, 90);
 	}
 }

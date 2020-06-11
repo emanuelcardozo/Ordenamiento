@@ -13,7 +13,7 @@ public class PorBurbujeo<T extends Comparable<T>> extends PanelOrdenador impleme
 	private int columnaVerde = -1;
 	private int cantComparaciones = 0;
 	private int cantIntercambios = 0;
-	private int tiempo = 0;
+	private long timeStart = 0;
 
 	public PorBurbujeo(int sleepTime, int width, int height) {
 		super("Burbujeo", sleepTime, width, height);
@@ -21,7 +21,7 @@ public class PorBurbujeo<T extends Comparable<T>> extends PanelOrdenador impleme
 
 	@Override
 	public int[] ordenar(int[] arregloInmutable) {
-		long timeStart = System.currentTimeMillis();
+		timeStart = System.currentTimeMillis();
 		int[] arreglo = Arrays.copyOf(arregloInmutable, arregloInmutable.length);
 		list = arreglo;
 		int cantidadVerdes = 0;
@@ -33,7 +33,6 @@ public class PorBurbujeo<T extends Comparable<T>> extends PanelOrdenador impleme
 				for (int i = 0; i < arreglo.length - 1; i++) {
 					columnaRoja1 = i;
 					columnaRoja2 = i+1;
-					tiempo = (int) (System.currentTimeMillis() - timeStart);
 					repaint();
 					Thread.sleep(sleepTime);
 					
@@ -129,7 +128,8 @@ public class PorBurbujeo<T extends Comparable<T>> extends PanelOrdenador impleme
 		g.setColor(Color.RED);
 		g.drawString("Comparaciones:" + cantComparaciones, 30, 30);
 		g.drawString("Intercambios:" + cantIntercambios, 30, 60);
-		g.drawString("Tiempo:" + tiempo + " ms" , 30, 90);
+		long time = timeStart == 0 ? timeStart : System.currentTimeMillis() - timeStart;
+		g.drawString("Tiempo:" + time + " ms" , 30, 90);
 		}
 		
 	}

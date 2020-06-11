@@ -12,7 +12,7 @@ public class PorSeleccion<T extends Comparable<T>> extends PanelOrdenador implem
 	private int columnaAzul = -1;
 	private int cantComparaciones = 0;
 	private int cantIntercambios = 0;
-	private int tiempo = 0;
+	private long timeStart = 0;
 
 	public PorSeleccion(int sleepTime, int width, int height) {
 		super("Seleccion", sleepTime, width, height);
@@ -20,7 +20,7 @@ public class PorSeleccion<T extends Comparable<T>> extends PanelOrdenador implem
 	
 	@Override
 	public int[] ordenar(int[] arregloInmutable) {
-		long timeStart = System.currentTimeMillis();
+		timeStart = System.currentTimeMillis();
 		int[] arreglo = Arrays.copyOf(arregloInmutable, arregloInmutable.length);
 		arreglo = list;
 		int menor;
@@ -31,10 +31,9 @@ public class PorSeleccion<T extends Comparable<T>> extends PanelOrdenador implem
 				posicionDelMenor = i;
 				columnaRoja = posicionDelMenor;
 				for (j = i + 1; j < arreglo.length; j++) {
-					columnaAzul = j;
-					tiempo = (int) (System.currentTimeMillis() - timeStart); 
+					columnaAzul = j; 
 					repaint();
-					Thread.sleep(4 * sleepTime);
+					Thread.sleep(sleepTime);
 					if ((arreglo[j] - (menor)) < 0) {
 						menor = arreglo[j];
 						posicionDelMenor = j;
@@ -45,7 +44,7 @@ public class PorSeleccion<T extends Comparable<T>> extends PanelOrdenador implem
 				}
 				if (posicionDelMenor != i) {
 					intercambiar(arreglo, i, posicionDelMenor);
-					Thread.sleep(4 * sleepTime);
+					Thread.sleep(sleepTime);
 				}
 				columnaVerde++;
 				repaint();
@@ -114,7 +113,8 @@ public class PorSeleccion<T extends Comparable<T>> extends PanelOrdenador implem
 		g.setColor(Color.RED);
 		g.drawString("Comparaciones:" + cantComparaciones, 30, 30);
 		g.drawString("Intercambios:" + cantIntercambios, 30, 60);
-		g.drawString("Tiempo:" + tiempo + " ms" , 30, 90);
+		long time = timeStart == 0 ? timeStart : System.currentTimeMillis() - timeStart;
+		g.drawString("Tiempo:" + time + " ms" , 30, 90);
 	}
 
 }
