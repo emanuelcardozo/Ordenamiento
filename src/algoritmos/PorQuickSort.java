@@ -1,8 +1,10 @@
-package src;
+package algoritmos;
 
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.Arrays;
+
+import src.SortPanel;
 
 public class PorQuickSort<T extends Comparable<T>> extends SortPanel implements Estrategia<T> {
 	private static final long serialVersionUID = 1L;
@@ -30,16 +32,17 @@ public class PorQuickSort<T extends Comparable<T>> extends SortPanel implements 
 			Thread.sleep(sleepTime);
 			repaint();
 			int pivot = arreglo[superior];
+			columnaRoja = inferior + (superior - inferior) / 2;
 			int i = (inferior - 1);
 			for (int j = inferior; j < superior; j++) {
 				Thread.sleep(4 * sleepTime);
 				repaint();
 				if ((arreglo[j] - (pivot)) < 0) {
 					i++;
+					columnaAzul = i;
+					Thread.sleep(4 * sleepTime);
+					repaint();
 					intercambiar(arreglo, i, j);
-//					columnaCyan = j;
-//					Thread.sleep(4 * sleepTime);
-//					repaint();
 				}
 				columnaRoja = j;
 				repaint();
@@ -47,7 +50,6 @@ public class PorQuickSort<T extends Comparable<T>> extends SortPanel implements 
 			intercambiar(arreglo, i + 1, superior);
 			return i + 1;
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return 0;
@@ -56,6 +58,7 @@ public class PorQuickSort<T extends Comparable<T>> extends SortPanel implements 
 	private void ordenarQ(int arreglo[], int inferior, int superior) {
 		if (inferior < superior) {
 			int pivot = partition(arreglo, inferior, superior);
+			columnaAzul = inferior;
 			repaint();
 			ordenarQ(arreglo, inferior, pivot - 1);
 			ordenarQ(arreglo, pivot + 1, superior);

@@ -1,4 +1,4 @@
-package src;
+package algoritmos;
 
 public interface  Estrategia<T extends Comparable<T>> {
 
