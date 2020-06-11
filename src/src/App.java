@@ -8,6 +8,6 @@ public class App {
   */
 	public static void main(String[] args) {
 		Ventana v = new Ventana();
-		v.ejecutarAlgoritmo("Burbuja", "Aleatorio", 200, 40);
+		v.ejecutarAlgoritmo("Seleccion", "Aleatorio", 200, 4);
 	}
 }
