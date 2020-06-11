@@ -3,10 +3,10 @@ package algoritmos;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.Arrays;
+import src.PanelOrdenador;
 
-import src.SortPanel;
 
-public class PorQuickSort<T extends Comparable<T>> extends SortPanel implements Estrategia<T> {
+public class PorQuickSort<T extends Comparable<T>> extends PanelOrdenador implements Estrategia<T> {
 	private static final long serialVersionUID = 1L;
 	private int columnaRoja = -1;
 	private int columnaVerde = -1;
@@ -14,6 +14,7 @@ public class PorQuickSort<T extends Comparable<T>> extends SortPanel implements 
 	private int columnaCyan = -1;
 	private int cantComparaciones = 0;
 	private int cantIntercambios = 0;
+	private int tiempo = 0;
 
 	public PorQuickSort(int sleepTime, int width, int height) {
 		super("QuickSort", sleepTime, width, height);
@@ -140,5 +141,6 @@ public class PorQuickSort<T extends Comparable<T>> extends SortPanel implements 
 		g.setColor(Color.RED);
 		g.drawString("Comparaciones: " + cantComparaciones, 10, 30);
 		g.drawString("Intercambios: " + cantIntercambios, 210, 30);
+		g.drawString("Tiempo:" + tiempo, 390, 30);
 	}
 }

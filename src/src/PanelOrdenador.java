@@ -8,7 +8,7 @@ import java.awt.Graphics;
 
 import javax.swing.JPanel;
 
-public abstract class SortPanel extends JPanel implements Runnable {
+public abstract class PanelOrdenador extends JPanel implements Runnable {
 	private static final long serialVersionUID = 1L;
 	protected static final int BORDER_WIDTH = 5;
 	private Dimension prefferedDimension;
@@ -17,7 +17,7 @@ public abstract class SortPanel extends JPanel implements Runnable {
 	protected int sleepTime;
 	private String name;
 
-	public SortPanel(String name, int sleepTime, int width, int height) {
+	public PanelOrdenador(String name, int sleepTime, int width, int height) {
 		prefferedDimension = new Dimension(width, height);
 		this.name = name;
 		this.sleepTime = sleepTime;

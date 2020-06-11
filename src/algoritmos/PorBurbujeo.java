@@ -3,10 +3,10 @@ package algoritmos;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.Arrays;
+import src.PanelOrdenador;
 
-import src.SortPanel;
 
-public class PorBurbujeo<T extends Comparable<T>> extends SortPanel implements Estrategia<T> {
+public class PorBurbujeo<T extends Comparable<T>> extends PanelOrdenador implements Estrategia<T> {
 	private static final long serialVersionUID = 1L;
 	private int columnaRoja = -1;
 	private int columnaVerde = -1;
@@ -94,7 +94,6 @@ public class PorBurbujeo<T extends Comparable<T>> extends SortPanel implements E
 				g.setColor(Color.BLACK);
 				g.drawRect(2 * BORDER_WIDTH + columnWidth * i, getHeight() - list[i] * columnHeight - 2 * BORDER_WIDTH,
 						columnWidth, list[i] * columnHeight);
-			}
 		}
 		if (columnaRoja != -1) {
 			g.setColor(Color.RED);
@@ -110,6 +109,7 @@ public class PorBurbujeo<T extends Comparable<T>> extends SortPanel implements E
 		g.drawString("Comparaciones:" + cantComparaciones, 10, 30);
 		g.drawString("Intercambios:" + cantIntercambios, 210, 30);
 		g.drawString("Tiempo:" + tiempo, 390, 30);
+		}
+		
 	}
-
 }

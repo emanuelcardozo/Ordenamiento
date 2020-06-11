@@ -3,10 +3,9 @@ package algoritmos;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.Arrays;
+import src.PanelOrdenador;
 
-import src.SortPanel;
-
-public class PorSeleccion<T extends Comparable<T>> extends SortPanel implements Estrategia<T> {
+public class PorSeleccion<T extends Comparable<T>> extends PanelOrdenador implements Estrategia<T> {
 	private static final long serialVersionUID = 1L;
 	private int columnaRoja = -1;
 	private int columnaVerde = -1;
