@@ -38,12 +38,10 @@ public abstract class SortPanel extends JPanel implements Runnable {
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		
-		//draw border
+
 		g.setColor(Color.WHITE);
 		g.drawRect(BORDER_WIDTH, BORDER_WIDTH, getWidth() - 2 * BORDER_WIDTH, getHeight() - 2 * BORDER_WIDTH);
 		
-		//draw title
 		Font nameFont = new Font(Font.MONOSPACED, Font.BOLD, 18);
 		FontMetrics nameFontMetrix = getFontMetrics(nameFont);		
 		g.setColor(Color.BLACK);
