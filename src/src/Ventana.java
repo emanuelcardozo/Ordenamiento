@@ -21,7 +21,7 @@ public class Ventana extends JApplet {
 	private int height = 500;
 
 	public Ventana(String tipoOrdenamiento, int tiempoDemora) {
-		PanelORdenadorContendor sortPanelHolder = new PanelORdenadorContendor();
+		PanelOrdenadorContendor sortPanelHolder = new PanelOrdenadorContendor();
 		sortPanelHolder.setPreferredSize(new Dimension(width, height));
 		sortPanelHolder.setBackground(Color.BLACK);
 		sortPanelHolder.setForeground(Color.BLACK);

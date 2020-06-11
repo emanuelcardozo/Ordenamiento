@@ -5,7 +5,7 @@ import java.awt.Graphics;
 
 import javax.swing.JPanel;
 
-class PanelORdenadorContendor extends JPanel {
+class PanelOrdenadorContendor extends JPanel {
 	private static final long serialVersionUID = 1L;
 
 	@Override
