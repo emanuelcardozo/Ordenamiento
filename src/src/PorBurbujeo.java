@@ -10,10 +10,11 @@ public class PorBurbujeo<T extends Comparable<T>> extends SortPanel implements E
 	private int columnaVerde = -1;
 	private int cantComparaciones = 0;
 	private int cantIntercambios = 0;
+	private long tiempoInicio;
 	
 	
-	public PorBurbujeo(String nombre, int sleepTime, int width, int height) {
-		super(nombre, sleepTime, width, height);
+	public PorBurbujeo(int sleepTime, int width, int height) {
+		super("Burbujeo", sleepTime, width, height);
 	}
 
 	@Override
@@ -45,6 +46,7 @@ public class PorBurbujeo<T extends Comparable<T>> extends SortPanel implements E
 			} while (huboCambio);
 		} catch (InterruptedException e) {
 		}
+		columnaVerde = 0;
 		repaint();
 		return arreglo;
 	}
@@ -97,8 +99,9 @@ public class PorBurbujeo<T extends Comparable<T>> extends SortPanel implements E
 			g.drawRect(2 * BORDER_WIDTH + columnWidth * columnaRoja, getHeight() - list[columnaRoja] * columnHeight - 2 * BORDER_WIDTH, columnWidth, list[columnaRoja] * columnHeight);
 		}
 		g.setColor(Color.RED);
-		g.drawString("Comparaciones: " + cantComparaciones, 10, 30);
-		g.drawString("Intercambios: " + cantIntercambios, 210, 30);
+		g.drawString("Comparaciones:" + cantComparaciones, 10, 30);
+		g.drawString("Intercambios:" + cantIntercambios, 210, 30);
+		g.drawString("Tiempo:" + tiempoInicio, 390, 30);
 	}
 
 

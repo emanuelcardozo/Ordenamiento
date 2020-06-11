@@ -9,9 +9,9 @@ import java.util.concurrent.Executors;
 public class App extends JApplet {
 	private static final long serialVersionUID = 1L;
 	private SortPanel sp;
-	private static int size = 50;
+	private static int size = 20;
 	private int sleepTime = 10;
-	private int width = 500;
+	private int width = 700;
     private	int height = 200;
  
 
@@ -22,7 +22,7 @@ public class App extends JApplet {
 		sortPanelHolder.setPreferredSize(new Dimension(width, height));
 		sortPanelHolder.setBackground(Color.BLACK);
 		sortPanelHolder.setForeground(Color.BLACK);
-		sp = new PorSeleccion("Burbujeo", sleepTime, width, height);
+		sp = new PorSeleccion(sleepTime, width, height);
 		sp.setVisible(true);
 		sortPanelHolder.add(sp);
 		add(sortPanelHolder);	

@@ -12,8 +12,8 @@ public class PorQuickSort<T extends Comparable<T>> extends SortPanel implements 
 	private int cantComparaciones = 0;
 	private int cantIntercambios = 0;
 
-	public PorQuickSort(String nombre, int sleepTime, int width, int height) {
-		super(nombre, sleepTime, width, height);
+	public PorQuickSort(int sleepTime, int width, int height) {
+		super("QuickSort", sleepTime, width, height);
 	}
 
 	public int[] ordenar(final int[] arregloInmutable) {
@@ -72,8 +72,7 @@ public class PorQuickSort<T extends Comparable<T>> extends SortPanel implements 
 
 	@Override
 	public void run() {
-		ordenar(list);
-		
+		ordenar(list);	
 	}
 
 	@Override

@@ -11,8 +11,8 @@ public class PorSeleccion<T extends Comparable<T>> extends SortPanel implements 
 	private int cantComparaciones = 0;
 	private int cantIntercambios = 0;
 
-	public PorSeleccion(String nombre, int sleepTime, int width, int height) {
-		super(nombre, sleepTime, width, height);
+	public PorSeleccion(int sleepTime, int width, int height) {
+		super("Seleccion", sleepTime, width, height);
 	}
 	
 	@Override
