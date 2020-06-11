@@ -140,7 +140,7 @@ public class PorQuickSort<T extends Comparable<T>> extends PanelOrdenador implem
 		}
 		g.setColor(Color.RED);
 		g.drawString("Comparaciones: " + cantComparaciones, 10, 30);
-		g.drawString("Intercambios: " + cantIntercambios, 210, 30);
-		g.drawString("Tiempo:" + tiempo, 390, 30);
+		g.drawString("Intercambios: " + cantIntercambios, 250, 30);
+		g.drawString("Tiempo:" + tiempo, 450, 30);
 	}
 }

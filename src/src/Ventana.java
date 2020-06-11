@@ -89,6 +89,14 @@ public class Ventana extends JApplet {
 			main.pintadoAnimacion(list);
 			break;
 		case "Casi invertido":
+			for (int i = 0; i < list.length/2; i++) {
+				list[i] = size - i;
+			}
+			for (int i = list.length/2; i < list.length; i++) {
+				list[i] = size;
+			}
+			
+			main.pintadoAnimacion(list);
 			break;
 		case "Ordenado":
 			for (int i = 0; i < list.length; i++) {
