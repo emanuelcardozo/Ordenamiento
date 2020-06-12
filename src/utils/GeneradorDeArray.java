@@ -67,10 +67,21 @@ public class GeneradorDeArray {
 	
 	public static int[] get( String name, int size ) {
 		switch(name) {
-			case "Aleatorio": return getArrayAleatorio(size);
-			case "Invertido": return getArrayInvertido(size);
-			case "Casi invertido": return getArrayCasiInvertido(size);
-			case "Ordenado": return getArrayOrdenado(size);
+			case "Aleatorio":
+			case "aleatorio":
+				return getArrayAleatorio(size);
+			case "Invertido":
+			case "invertido":
+			case "Inverso":
+			case "inverso":
+				return getArrayInvertido(size);
+			case "Casi Invertido":
+			case "Casi invertido":
+			case "casi invertido": 
+				return getArrayCasiInvertido(size);
+			case "Ordenado":
+			case "ordenado":
+				return getArrayOrdenado(size);
 			}
 		return getArrayCasiOrdenado(size);
 	}

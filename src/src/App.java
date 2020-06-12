@@ -7,6 +7,6 @@ public class App {
   * tipoDeArray: Aleatorio - Invertido - Casi invertido - Ordenado - Casi ordenado
   */
 	public static void main(String[] args) {
-		new Ventana("Quicksort", "Invertido", 200, 4).run();
+		new Ventana("Burbuja", "ordenado", 200, 4).run();
 	}
 }
