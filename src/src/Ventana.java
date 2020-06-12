@@ -5,6 +5,7 @@ import javax.swing.*;
 import algoritmos.PorBurbujeo;
 import algoritmos.PorQuickSort;
 import algoritmos.PorSeleccion;
+import utils.GeneradorDeArray;
 
 import java.awt.*;
 import java.io.File;
@@ -70,52 +71,8 @@ public class Ventana extends JApplet {
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 		
-		int[] list = new int[size];
-		switch (tipoArray) {
-		case "Aleatorio":
-			for (int i = 0; i < list.length; i++) {
-				list[i] = i + 1;
-			}
-			for (int i = 0; i < list.length; i++) {
-				int index = (int) (Math.random() * list.length);
-				int temp = list[i];
-				list[i] = list[index];
-				list[index] = temp;
-			}
-			main.pintadoAnimacion(list);
-			break;
-		case "Invertido":
-			for (int i = 0; i < list.length; i++) {
-				list[i] = size - i;
-			}
-			main.pintadoAnimacion(list);
-			break;
-		case "Casi invertido":
-			for (int i = 0; i < list.length/2; i++) {
-				list[i] = size - i;
-			}
-			for (int i = list.length/2; i < list.length; i++) {
-				list[i] = size;
-			}
-			main.pintadoAnimacion(list);
-			break;
-		case "Ordenado":
-			for (int i = 0; i < list.length; i++) {
-				list[i] = i + 1;
-			}
-			main.pintadoAnimacion(list);
-			break;
-		case "Casi ordenado":
-			for (int i = 0; i < list.length / 2; i++) {
-				list[i] = i + 1;
-			}
-			for (int i = list.length / 2; i < list.length; i++) {
-				list[i] = i + 2;
-			}
-			list[list.length - 1] = list.length / 2 + 1;
-			main.pintadoAnimacion(list);
-			break;
-		}
+		main.pintadoAnimacion(GeneradorDeArray.get(tipoArray, size));
+		
 	}
 
 	public void escribirResultado(String tipoOrdenamiento, String tipoArray, int cantElementos, int tiempoGral) {
