@@ -15,6 +15,7 @@ public class PorQuickSort<T extends Comparable<T>> extends PanelOrdenador implem
 	private int cantComparaciones = 0;
 	private int cantIntercambios = 0;
 	private long timeStart = 0;
+	private int contadorAzul = 0;
 
 	public PorQuickSort(int sleepTime, int width, int height) {
 		super("QuickSort", sleepTime, width, height);
@@ -25,6 +26,10 @@ public class PorQuickSort<T extends Comparable<T>> extends PanelOrdenador implem
 		arreglo = list;
 		timeStart = System.currentTimeMillis();
 		ordenarQ(arreglo, 0, arreglo.length - 1);
+		columnaVerde = arreglo.length-1;
+		columnaAzul = -1;
+		columnaRoja = -1;
+		repaint();
 
 		return arreglo;
 	}
@@ -43,11 +48,14 @@ public class PorQuickSort<T extends Comparable<T>> extends PanelOrdenador implem
 				if ((arreglo[j] - (pivot)) < 0) {
 					i++;
 					columnaAzul = i;
+					
 					Thread.sleep(sleepTime);
 					repaint();
 					intercambiar(arreglo, i, j);
-				}
+				}				
+				
 				columnaRoja = j;
+					
 				repaint();
 			}
 			intercambiar(arreglo, i + 1, superior);
@@ -64,10 +72,17 @@ public class PorQuickSort<T extends Comparable<T>> extends PanelOrdenador implem
 			int pivot = partition(arreglo, inferior, superior);
 			columnaAzul = inferior;
 			
+			if( columnaVerde < inferior ) {
+				columnaVerde = inferior-1;
+			}
+			
 			repaint();
 			ordenarQ(arreglo, inferior, pivot - 1);
 			ordenarQ(arreglo, pivot + 1, superior);
-
+			
+			
+				
+			
 		}
 	}
 
