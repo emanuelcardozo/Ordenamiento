@@ -13,34 +13,63 @@ import java.io.PrintWriter;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class Ventana extends JApplet {
+public class PanelAnimado extends JApplet {
 	private static final long serialVersionUID = 1L;
 	private PanelOrdenador sp;
-	private int sleepTime;
+	private PanelOrdenadorContendor panelContenedor;
+	private int delay;
 	private final int WIDTH = 900;
-	private final int WIDTH_ANIMACION = WIDTH - 200;
 	private final int HEIGHT = 600;
+	private final int WIDTH_ANIMATION = WIDTH;
+	private final int HEIGHT_ANIMATION = HEIGHT / 2;
+	
 
-	public Ventana(String tipoOrdenamiento, int tiempoDemora) {
-		PanelOrdenadorContendor sortPanelHolder = new PanelOrdenadorContendor();
-		sortPanelHolder.setPreferredSize(new Dimension(WIDTH, HEIGHT));
-		sortPanelHolder.setBackground(Color.BLACK);
-		sortPanelHolder.setForeground(Color.BLACK);
-		this.sleepTime = tiempoDemora;
-		if (tipoOrdenamiento.equals("Burbujeo") || tipoOrdenamiento.equals("Burbuja")
-				|| tipoOrdenamiento.equals("Por burbujeo"))
-			sp = new PorBurbujeo(sleepTime, WIDTH_ANIMACION, HEIGHT);
-		else if (tipoOrdenamiento.equals("Seleccion") || tipoOrdenamiento.equals("Por seleccion"))
-			sp = new PorSeleccion(sleepTime, WIDTH_ANIMACION, HEIGHT);
-		else if (tipoOrdenamiento.equals("Quicksort"))
-			sp = new PorQuickSort(sleepTime, WIDTH_ANIMACION, HEIGHT);
-		sp.setVisible(true);
-		sortPanelHolder.add(sp);
-		add(sortPanelHolder);
+//	public PanelAnimado(String tipoOrdenamiento, int tiempoDemora) {
+//		PanelOrdenadorContendor sortPanelHolder = new PanelOrdenadorContendor();
+//		sortPanelHolder.setPreferredSize(new Dimension(WIDTH_ANIMATION, HEIGHT_ANIMATION));
+//		sortPanelHolder.setBackground(Color.BLACK);
+//		sortPanelHolder.setForeground(Color.BLACK);
+//		this.delay = tiempoDemora;
+//		
+//		if (tipoOrdenamiento.equals("Burbujeo") || tipoOrdenamiento.equals("Burbuja")
+//				|| tipoOrdenamiento.equals("Por burbujeo"))
+//			sp = new PorBurbujeo(delay, WIDTH_ANIMATION, HEIGHT);
+//		else if (tipoOrdenamiento.equals("Seleccion") || tipoOrdenamiento.equals("Por seleccion"))
+//			sp = new PorSeleccion(delay, WIDTH_ANIMATION, HEIGHT);
+//		else if (tipoOrdenamiento.equals("Quicksort"))
+//			sp = new PorQuickSort(delay, WIDTH_ANIMATION, HEIGHT);
+//		sp.setVisible(true);
+//		sortPanelHolder.add(sp);
+//		add(sortPanelHolder);
+//	}
+
+	public PanelAnimado(){
+		panelContenedor = new PanelOrdenadorContendor();
+		panelContenedor.setPreferredSize(new Dimension(WIDTH_ANIMATION, HEIGHT_ANIMATION));
+		panelContenedor.setForeground(Color.BLACK);
+		setOrdenamiento("Burbujeo");
 	}
-
-	public Ventana() {
-
+	
+	public void setDelay(int delay) {
+		this.delay = delay;
+	}
+	
+	public void setOrdenamiento( String nombreOrdenamiento ) {
+		switch (nombreOrdenamiento) {
+		case "Burbujeo":
+			sp = new PorBurbujeo(delay, WIDTH_ANIMATION, HEIGHT);
+			break;
+		case "Seleccion":
+			sp = new PorSeleccion(delay, WIDTH_ANIMATION, HEIGHT);
+		break;
+		case "QuickSort":
+			sp = new PorQuickSort(delay, WIDTH_ANIMATION, HEIGHT);
+		break;
+		default: break;
+		}
+		
+		sp.setVisible(true);
+		panelContenedor.add(sp);
 	}
 
 	public void pintadoAnimacion(int[] list) {
@@ -61,63 +90,6 @@ public class Ventana extends JApplet {
 		}
 	}
 
-	public void seleccionarTipoArray(String tipoArray, String tipoOrdenamiento, int size, int tiempoDemora) {
-		JFrame frame = new JFrame("Algoritmos de ordenamiento");
-		Ventana main = new Ventana(tipoOrdenamiento, tiempoDemora);
-		frame.add(main);
-//		frame.setUndecorated(true);
-		frame.pack();
-		frame.setLocationRelativeTo(null);
-		frame.setVisible(true);
-		
-		int[] list = new int[size];
-		switch (tipoArray) {
-		case "Aleatorio":
-			for (int i = 0; i < list.length; i++) {
-				list[i] = i + 1;
-			}
-			for (int i = 0; i < list.length; i++) {
-				int index = (int) (Math.random() * list.length);
-				int temp = list[i];
-				list[i] = list[index];
-				list[index] = temp;
-			}
-			main.pintadoAnimacion(list);
-			break;
-		case "Invertido":
-			for (int i = 0; i < list.length; i++) {
-				list[i] = size - i;
-			}
-			main.pintadoAnimacion(list);
-			break;
-		case "Casi invertido":
-			for (int i = 0; i < list.length/2; i++) {
-				list[i] = size - i;
-			}
-			for (int i = list.length/2; i < list.length; i++) {
-				list[i] = size;
-			}
-			main.pintadoAnimacion(list);
-			break;
-		case "Ordenado":
-			for (int i = 0; i < list.length; i++) {
-				list[i] = i + 1;
-			}
-			main.pintadoAnimacion(list);
-			break;
-		case "Casi ordenado":
-			for (int i = 0; i < list.length / 2; i++) {
-				list[i] = i + 1;
-			}
-			for (int i = list.length / 2; i < list.length; i++) {
-				list[i] = i + 2;
-			}
-			list[list.length - 1] = list.length / 2 + 1;
-			main.pintadoAnimacion(list);
-			break;
-		}
-	}
-
 	public void escribirResultado(String tipoOrdenamiento, String tipoArray, int cantElementos, int tiempoGral) {
 		try {
 			PrintWriter pw = new PrintWriter(new File("Reportes/resultado.out"));
@@ -130,15 +102,72 @@ public class Ventana extends JApplet {
 			e.printStackTrace();
 		}
 	}
+	
+	public void seleccionarTipoArray(String tipoArray, String tipoOrdenamiento, int size, int tiempoDemora) {		
+		int[] array = generarArray( tipoArray, size );
+		setDelay(tiempoDemora);
+		pintadoAnimacion(array);
+	}
+		
+	private int[] generarArray(String tipoArray, int size) {
+		int[] array = new int[size];
+		switch (tipoArray) {
+		case "Aleatorio":
+			for (int i = 0; i < array.length; i++) {
+				array[i] = i + 1;
+			}
+			for (int i = 0; i < array.length; i++) {
+				int index = (int) (Math.random() * array.length);
+				int temp = array[i];
+				array[i] = array[index];
+				array[index] = temp;
+			}
+			
+			break;
+		case "Invertido":
+			for (int i = 0; i < array.length; i++) {
+				array[i] = size - i;
+			}
+		
+			break;
+		case "Casi invertido":
+			for (int i = 0; i < array.length/2; i++) {
+				array[i] = size - i;
+			}
+			for (int i = array.length/2; i < array.length; i++) {
+				array[i] = size;
+			}
+			
+			break;
+		case "Ordenado":
+			for (int i = 0; i < array.length; i++) {
+				array[i] = i + 1;
+			}
+			
+			break;
+		case "Casi ordenado":
+			for (int i = 0; i < array.length / 2; i++) {
+				array[i] = i + 1;
+			}
+			for (int i = array.length / 2; i < array.length; i++) {
+				array[i] = i + 2;
+			}
+			array[array.length - 1] = array.length / 2 + 1;
+			
+			break;
+		}
+		return array;
+	}
 
 	public void ejecutarAlgoritmo(String tipoOrdenamiento, String tipoArray, int cantElementos, int tiempoDemora) {
-		Ventana ap = new Ventana(tipoOrdenamiento, tiempoDemora);
 		int tiempoFinal, tiempoGral;
 		int tiempoInicio = (int) System.currentTimeMillis();
-		ap.seleccionarTipoArray(tipoArray, tipoOrdenamiento, cantElementos, tiempoDemora);
+		
+		seleccionarTipoArray(tipoArray, tipoOrdenamiento, cantElementos, tiempoDemora);
 		tiempoFinal = (int) System.currentTimeMillis();
 		tiempoGral = (tiempoFinal-tiempoInicio) /1000;
-		ap.escribirResultado(tipoOrdenamiento, tipoArray, cantElementos, tiempoGral);
+		escribirResultado(tipoOrdenamiento, tipoArray, cantElementos, tiempoGral);
+		
 		System.out.println("Reporte realizado correctamente!");
 		System.exit(0);
 	}

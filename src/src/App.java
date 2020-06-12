@@ -1,4 +1,4 @@
-package src; 
+package src;
 
 public class App {
  /***
@@ -7,7 +7,8 @@ public class App {
   * tipoDeArray: Aleatorio - Invertido - Casi invertido - Ordenado - Casi ordenado
   */
 	public static void main(String[] args) {
-		Ventana v = new Ventana();
-		v.ejecutarAlgoritmo("Quicksort", "Aleatorio", 200, 4);
+//		PanelAnimado v = new PanelAnimado();
+//		v.ejecutarAlgoritmo("Quicksort", "Aleatorio", 200, 4);
+		new VentanaPrincipal();
 	}
 }
