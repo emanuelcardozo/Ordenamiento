@@ -2,9 +2,6 @@ package src;
 
 import javax.swing.*;
 
-import algoritmos.PorBurbujeo;
-import algoritmos.PorQuickSort;
-import algoritmos.PorSeleccion;
 import utils.GeneradorDeArray;
 import utils.GeneradorPanelOrdenador;
 
@@ -15,16 +12,26 @@ import java.io.PrintWriter;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class Ventana extends JApplet {
+@SuppressWarnings("deprecation")
+public class Ventana extends JApplet implements Runnable {
 	private static final long serialVersionUID = 1L;
-	private PanelOrdenador sp;
-	private int sleepTime;
+	
 	private final int WIDTH = 900;
 	private final int HEIGHT = 600;
+	
+	private PanelOrdenador sp;
+	private int delay;
+	private int cantElementos;
+	private String tipoOrdenamiento;
+	private String tipoArray;
+	
 
-	public Ventana(String tipoOrdenamiento, int tiempoDemora) {
-		this.sleepTime = tiempoDemora;
-		this.sp = GeneradorPanelOrdenador.get( tipoOrdenamiento, WIDTH, HEIGHT, sleepTime );
+	public Ventana(String tipoOrdenamiento, String tipoArray, int cantElementos, int tiempoDemora) {
+		this.delay = tiempoDemora;
+		this.tipoArray = tipoArray;
+		this.cantElementos = cantElementos;
+		this.tipoOrdenamiento = tipoOrdenamiento;
+		this.sp = GeneradorPanelOrdenador.get( tipoOrdenamiento, WIDTH, HEIGHT, delay );
 		init();
 	}
 	
@@ -36,10 +43,6 @@ public class Ventana extends JApplet {
 		sp.setVisible(true);
 		sortPanelHolder.add(sp);
 		add(sortPanelHolder);
-	}
-
-	public Ventana() {
-
 	}
 
 	public void pintadoAnimacion(int[] list) {
@@ -60,17 +63,15 @@ public class Ventana extends JApplet {
 		}
 	}
 
-	public void seleccionarTipoArray(String tipoArray, String tipoOrdenamiento, int size, int tiempoDemora) {
+	public void mostrarVentana() {
 		JFrame frame = new JFrame("Algoritmos de ordenamiento");
-		Ventana main = new Ventana(tipoOrdenamiento, tiempoDemora);
-		frame.add(main);
-//		frame.setUndecorated(true);
+
+		frame.add(this);
 		frame.pack();
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 		
-		main.pintadoAnimacion(GeneradorDeArray.get(tipoArray, size));
-		
+		pintadoAnimacion(GeneradorDeArray.get(tipoArray, cantElementos));	
 	}
 
 	public void escribirResultado(String tipoOrdenamiento, String tipoArray, int cantElementos, int tiempoGral) {
@@ -86,15 +87,19 @@ public class Ventana extends JApplet {
 		}
 	}
 
-	public void ejecutarAlgoritmo(String tipoOrdenamiento, String tipoArray, int cantElementos, int tiempoDemora) {
-		Ventana ap = new Ventana(tipoOrdenamiento, tiempoDemora);
+	@Override
+	public void run() {
 		int tiempoFinal, tiempoGral;
 		int tiempoInicio = (int) System.currentTimeMillis();
-		ap.seleccionarTipoArray(tipoArray, tipoOrdenamiento, cantElementos, tiempoDemora);
+		
+		mostrarVentana();
 		tiempoFinal = (int) System.currentTimeMillis();
 		tiempoGral = (tiempoFinal-tiempoInicio) /1000;
-		ap.escribirResultado(tipoOrdenamiento, tipoArray, cantElementos, tiempoGral);
+		
+		escribirResultado(tipoOrdenamiento, tipoArray, cantElementos, tiempoGral);
+		
 		System.out.println("Reporte realizado correctamente!");
 		System.exit(0);
+		
 	}
 }
