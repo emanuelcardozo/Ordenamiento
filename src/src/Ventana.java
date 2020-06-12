@@ -6,6 +6,7 @@ import algoritmos.PorBurbujeo;
 import algoritmos.PorQuickSort;
 import algoritmos.PorSeleccion;
 import utils.GeneradorDeArray;
+import utils.GeneradorPanelOrdenador;
 
 import java.awt.*;
 import java.io.File;
@@ -19,22 +20,19 @@ public class Ventana extends JApplet {
 	private PanelOrdenador sp;
 	private int sleepTime;
 	private final int WIDTH = 900;
-	private final int WIDTH_ANIMACION = WIDTH - 200;
 	private final int HEIGHT = 600;
 
 	public Ventana(String tipoOrdenamiento, int tiempoDemora) {
+		this.sleepTime = tiempoDemora;
+		this.sp = GeneradorPanelOrdenador.get( tipoOrdenamiento, WIDTH, HEIGHT, sleepTime );
+		init();
+	}
+	
+	public void init() {
 		PanelOrdenadorContendor sortPanelHolder = new PanelOrdenadorContendor();
 		sortPanelHolder.setPreferredSize(new Dimension(WIDTH, HEIGHT));
 		sortPanelHolder.setBackground(Color.BLACK);
 		sortPanelHolder.setForeground(Color.BLACK);
-		this.sleepTime = tiempoDemora;
-		if (tipoOrdenamiento.equals("Burbujeo") || tipoOrdenamiento.equals("Burbuja")
-				|| tipoOrdenamiento.equals("Por burbujeo"))
-			sp = new PorBurbujeo(sleepTime, WIDTH_ANIMACION, HEIGHT);
-		else if (tipoOrdenamiento.equals("Seleccion") || tipoOrdenamiento.equals("Por seleccion"))
-			sp = new PorSeleccion(sleepTime, WIDTH_ANIMACION, HEIGHT);
-		else if (tipoOrdenamiento.equals("Quicksort"))
-			sp = new PorQuickSort(sleepTime, WIDTH_ANIMACION, HEIGHT);
 		sp.setVisible(true);
 		sortPanelHolder.add(sp);
 		add(sortPanelHolder);
