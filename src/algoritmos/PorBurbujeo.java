@@ -6,7 +6,7 @@ import java.util.Arrays;
 import src.PanelOrdenador;
 
 
-public class PorBurbujeo<T extends Comparable<T>> extends PanelOrdenador implements Estrategia<T> {
+public class PorBurbujeo extends PanelOrdenador implements Estrategia {
 	private static final long serialVersionUID = 1L;
 	private int columnaRoja1 = -1;
 	private int columnaRoja2 = -1;
