@@ -1,6 +1,6 @@
 package algoritmos;
 
-public interface Estrategia<T extends Comparable<T>> {
+public interface Estrategia {
 
 	public abstract int[] ordenar(final int[] arregloInmutable);
 

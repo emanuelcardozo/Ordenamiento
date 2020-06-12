@@ -5,7 +5,7 @@ import java.awt.Graphics;
 import java.util.Arrays;
 import src.PanelOrdenador;
 
-public class PorSeleccion<T extends Comparable<T>> extends PanelOrdenador implements Estrategia<T> {
+public class PorSeleccion extends PanelOrdenador implements Estrategia {
 	private static final long serialVersionUID = 1L;
 	private int columnaRoja = -1;
 	private int columnaVerde = -1;

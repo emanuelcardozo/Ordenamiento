@@ -6,7 +6,7 @@ import java.util.Arrays;
 import src.PanelOrdenador;
 
 
-public class PorQuickSort<T extends Comparable<T>> extends PanelOrdenador implements Estrategia<T> {
+public class PorQuickSort extends PanelOrdenador implements Estrategia {
 	private static final long serialVersionUID = 1L;
 	private int columnaRoja = -1;
 	private int columnaVerde = -1;
@@ -15,7 +15,6 @@ public class PorQuickSort<T extends Comparable<T>> extends PanelOrdenador implem
 	private int cantComparaciones = 0;
 	private int cantIntercambios = 0;
 	private long timeStart = 0;
-	private int contadorAzul = 0;
 
 	public PorQuickSort(int sleepTime, int width, int height) {
 		super("QuickSort", sleepTime, width, height);
@@ -79,10 +78,7 @@ public class PorQuickSort<T extends Comparable<T>> extends PanelOrdenador implem
 			repaint();
 			ordenarQ(arreglo, inferior, pivot - 1);
 			ordenarQ(arreglo, pivot + 1, superior);
-			
-			
-				
-			
+						
 		}
 	}
 

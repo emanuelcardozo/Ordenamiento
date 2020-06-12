@@ -17,22 +17,23 @@ public class Ventana extends JApplet {
 	private static final long serialVersionUID = 1L;
 	private PanelOrdenador sp;
 	private int sleepTime;
-	private int width = 900;
-	private int height = 600;
+	private final int WIDTH = 900;
+	private final int WIDTH_ANIMACION = WIDTH - 200;
+	private final int HEIGHT = 600;
 
 	public Ventana(String tipoOrdenamiento, int tiempoDemora) {
 		PanelOrdenadorContendor sortPanelHolder = new PanelOrdenadorContendor();
-		sortPanelHolder.setPreferredSize(new Dimension(width, height));
+		sortPanelHolder.setPreferredSize(new Dimension(WIDTH, HEIGHT));
 		sortPanelHolder.setBackground(Color.BLACK);
 		sortPanelHolder.setForeground(Color.BLACK);
 		this.sleepTime = tiempoDemora;
 		if (tipoOrdenamiento.equals("Burbujeo") || tipoOrdenamiento.equals("Burbuja")
 				|| tipoOrdenamiento.equals("Por burbujeo"))
-			sp = new PorBurbujeo(sleepTime, width, height);
+			sp = new PorBurbujeo(sleepTime, WIDTH_ANIMACION, HEIGHT);
 		else if (tipoOrdenamiento.equals("Seleccion") || tipoOrdenamiento.equals("Por seleccion"))
-			sp = new PorSeleccion(sleepTime, width, height);
+			sp = new PorSeleccion(sleepTime, WIDTH_ANIMACION, HEIGHT);
 		else if (tipoOrdenamiento.equals("Quicksort"))
-			sp = new PorQuickSort(sleepTime, width, height);
+			sp = new PorQuickSort(sleepTime, WIDTH_ANIMACION, HEIGHT);
 		sp.setVisible(true);
 		sortPanelHolder.add(sp);
 		add(sortPanelHolder);

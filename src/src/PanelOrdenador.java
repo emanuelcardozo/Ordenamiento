@@ -41,7 +41,7 @@ public abstract class PanelOrdenador extends JPanel implements Runnable {
 		super.paintComponent(g);
 
 		g.setColor(Color.WHITE);
-		g.drawRect(BORDER_WIDTH, BORDER_WIDTH, getWidth() - 2 * BORDER_WIDTH, getHeight() - 2 * BORDER_WIDTH);
+		g.drawRect(BORDER_WIDTH, BORDER_WIDTH, getWidth() - BORDER_WIDTH, getHeight() - 2 * BORDER_WIDTH);
 
 		Font nameFont = new Font(Font.MONOSPACED, Font.BOLD, 18);
 		FontMetrics nameFontMetrix = getFontMetrics(nameFont);
